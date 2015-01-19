@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-header">
+  <div class="left">
+    <h3><a href="{{ url_for('home.home') }}">vidAIo</a></h3>
+  </div>
+  <div class="right">
+    <form class="form-inline" role="form" method="POST" action="{{ url_for('search.search') }}">
+      <div class="form-group">
+        <input type="text" class="form-control" id="search-field" name="search-field" placeholder="Search">
+      </div>
+      <input type="submit" class="btn btn-default" value="Submit">
+      <button id="upload-btn" class="btn btn-primary" type="button">Upload Video</button>
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+  $("#upload-btn").click(function() {
+    window.location.href = "/upload/";
+  }); 
+</script>
+{% block page_content %}
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'header.html' %}
+{% block page_content %}
+<div class="jumbotron">
+  {% if video %}
+  <video src="{{ video }}" width="1020" height="805" controls></video>
+  {% else %}
+  <p>Yo</p>
+  {% endif %}
+</div>
+{% endblock %}

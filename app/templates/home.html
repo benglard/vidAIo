@@ -1,0 +1,22 @@
+{% extends 'header.html' %}
+{% block page_content %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Videos</h3>
+  </div>
+  <ul class="list-group">
+    {% for video in videos %}
+    <li class="list-group-item row">
+      <div class="col-md-6">
+        <img src="{{ video.thumb }}" width="500" height="300">
+      </div>
+      <div class="col-md-6">
+        <br><br><br>
+        <h4>Summary</h4>
+        <p>{{ video.summary }}</p>
+      </div>
+    </li>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'header.html' %}
+{% block page_content %}
+<div class="jumbotron">
+  <h3>Upload a File</h3><br>
+  <form action="." method=post enctype=multipart/form-data>
+    <p><input type=file name=file></p>
+    <input type="submit" class="btn btn-default" value="Upload">
+  </form>
+</div>
+{% endblock %}

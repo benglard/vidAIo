@@ -1,0 +1,52 @@
+{% extends 'header.html' %}
+{% block page_content %}
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Search Results</h3>
+  </div>
+  <div class="list-group">
+    {% set i = 0 %}
+    {% for video in videos %}
+    <li class="list-group-item row">
+      <div class="col-md-6">
+        <video id="vid{{ i }}" src="{{ video.url }}" width="500" height="500" controls>
+      </div>
+      <div class="col-md-6">
+        <h4>Summary</h4>
+        <p>{{ video.summary }}</p>
+        <h4>Keywords</h4>
+        {% for key in video.keywords %}
+        <button type="button" class="btn btn-link elem" id="{{ i }}-{{ key.time }}">{{ key.word }}</button>
+        {% endfor %}
+        <h4>Named Entities</h4>
+        {% for entity in video.ner %}
+        <button type="button" class="btn btn-link elem" id="{{ i }}-{{ entity.time }}">{{ entity.word }}</button>
+        {% endfor %}
+        <h4>Topics</h4>
+        {% for topic in video.topics %}
+        <button type="button" class="btn btn-link elem" id="{{ i }}-{{ topic.time }}">{{ topic.word }}</button>
+        {% endfor %}
+        <h4>Objects</h4>
+        {% for obj in video.objects %}
+        <button type="button" class="btn btn-link elem" id="{{ i }}-{{ obj.time }}">{{ obj.object }}</button>
+        {% endfor %}
+        <h4>Faces</h4>
+        {% for face in video.people %}
+        <button type="button" class="btn btn-link elem" id="{{ i }}-{{ face.time }}">{{ face.person }}</button>
+        {% endfor %}
+      </div>
+    </li>
+    {% set i = i + 1 %}
+    {% endfor %}
+  </div>
+</div>
+<script type="text/javascript">
+  $(".elem").click(function() {
+    var id = $(this).attr("id");
+    var idx = id.indexOf('-');
+    var count = id.substring(0, idx);
+    var time = parseInt(id.substring(idx + 1));
+    document.getElementById("vid" + count).currentTime = time;
+  });
+</script>
+{% endblock %}
